@@ -4,6 +4,8 @@ import cobra
 import numpy as np
 import os
 import re
+import webbrowser
+
 
 #Define sammiparser class
 class parser:
@@ -232,12 +234,16 @@ def plot(model,parsert = [],datat = [],secondaries = [],opts = options()):
     open(folder + '/browser/' + opts.htmlName,'w').write(index)
     #Open
     if opts.load:
-        os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + opts.htmlName)
+        #os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + opts.htmlName)
+        file_path = os.path.dirname(os.path.realpath(__file__)) + "/browser/" + opts.htmlName
+        webbrowser.open_new_tab("file://" + file_path)
 
 def openmap(htmlName):
     if not bool(re.search("\.html$",htmlName)):
         htmlName = htmlName + '.html'
-    os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + htmlName)
+    file_path = os.path.dirname(os.path.realpath(__file__)) + "/browser/" + htmlName
+    webbrowser.open_new_tab("file://" + file_path)
+    #os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + htmlName)
     return
 
 def test(n):
