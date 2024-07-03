@@ -4,6 +4,8 @@ import cobra
 import numpy as np
 import os
 import re
+import webbrowser
+
 
 #Define sammiparser class
 class parser:
@@ -232,12 +234,16 @@ def plot(model,parsert = [],datat = [],secondaries = [],opts = options()):
     open(folder + '/browser/' + opts.htmlName,'w').write(index)
     #Open
     if opts.load:
-        os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + opts.htmlName)
+        #os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + opts.htmlName)
+        file_path = os.path.dirname(os.path.realpath(__file__)) + "/browser/" + opts.htmlName
+        webbrowser.open_new_tab("file://" + file_path)
 
 def openmap(htmlName):
     if not bool(re.search("\.html$",htmlName)):
         htmlName = htmlName + '.html'
-    os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + htmlName)
+    file_path = os.path.dirname(os.path.realpath(__file__)) + "/browser/" + htmlName
+    webbrowser.open_new_tab("file://" + file_path)
+    #os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + htmlName)
     return
 
 def test(n):
@@ -460,7 +466,7 @@ def test(n):
                 model.reactions.get_by_id(r).lower_bound = lb
                 model.reactions.get_by_id(r).upper_bound = ub
         #Define secondaries
-        secondaries = ['^h_.$','^h2o_.$','^atp_.$','^adp_.','^pi_.','^o2_.','^co2_.','^nad_.','^nadh_.','^ndap_.','^ndaph_.',               '^q8_.$','^q8h2_.$','^nadp_.','^nadph_.']
+        secondaries = ['^h_.$','^h2o_.$','^atp_.$','^adp_.','^pi_.','^o2_.','^co2_.','^nad_.','^nadh_.','^ndap_.','^ndaph_.', '^q8_.$','^q8h2_.$','^nadp_.','^nadph_.']
         #Plot difference in scatterplot
         plot(model,dat,secondaries = secondaries)
 
