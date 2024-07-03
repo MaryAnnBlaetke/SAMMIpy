@@ -1,7 +1,6 @@
 name = "sammi"
 
 import cobra
-import cobra.test
 import numpy as np
 import os
 import re
@@ -244,22 +243,22 @@ def openmap(htmlName):
 def test(n):
     if n == 0:
         #Get sample model to plot
-        model = cobra.test.create_test_model("textbook")
+        model = cobra.io.load_model("textbook")
         #Plot file to default index_load.html
         plot(model)
     elif n == 1:
         #Get sample model to plot
-        model = cobra.test.create_test_model("salmonella")
+        model = cobra.io.load_model("salmonella")
         #Plot
         plot(model,'subsystem')
     elif n == 2:
         #Get sample model to plot
-        model = cobra.test.create_test_model("textbook")
+        model = cobra.io.load_model("textbook")
         #Plot
         plot(model,'compartment')
     elif n == 3:
         #Get sample model to plot
-        model = cobra.test.create_test_model("salmonella")
+        model = cobra.io.load_model("salmonella")
         #Generate options. This will not load a new tab upon generating the visualization
         opts = options(load = False)
         #Plot file to default index_load.html
@@ -273,7 +272,7 @@ def test(n):
         openmap('index_load2.html')
     elif n == 4:
         #Get sample model to plot
-        model = cobra.test.create_test_model("textbook")
+        model = cobra.io.load_model("textbook")
 
         #Define reactions
         tca = ['ACONTa','ACONTb','AKGDH','CS','FUM','ICDHyr','MDH','SUCOAS']
@@ -285,7 +284,7 @@ def test(n):
         plot(model,dat)
     elif n == 5:
         #Get sample model to plot
-        model = cobra.test.create_test_model("textbook")
+        model = cobra.io.load_model("textbook")
 
         #Define reactions
         tca = ['ACONTa','ACONTb','AKGDH','CS','FUM','ICDHyr','MDH','SUCOAS']
@@ -300,7 +299,7 @@ def test(n):
         plot(model,dat,secondaries = secondaries)
     elif n == 6:
         #Get sample model to plot
-        model = cobra.test.create_test_model("textbook")
+        model = cobra.io.load_model("textbook")
 
         #Define reactions
         tca = ['ACONTa','ACONTb','AKGDH','CS','FUM','ICDHyr','MDH','SUCOAS']
@@ -315,7 +314,7 @@ def test(n):
         plot(model,dat)
     elif n == 7:
         #Get sample model to plot
-        model = cobra.test.create_test_model("textbook")
+        model = cobra.io.load_model("textbook")
 
         #Define reactions
         tca = ['ACONTa','ACONTb','AKGDH','CS','FUM','ICDHyr','MDH','SUCOAS']
@@ -330,7 +329,7 @@ def test(n):
         plot(model,dat)
     elif n == 8:
         #Get sample model to plot
-        model = cobra.test.create_test_model("salmonella")
+        model = cobra.io.load_model("salmonella")
 
         #Get reactions and metabolites
         rx = [f.id for f in model.reactions]
@@ -357,7 +356,7 @@ def test(n):
         plot(model,'subsystem',datat = datat,secondaries = secondaries,opts = options(load=True))
     elif n == 9:
         #Get sample model to plot
-        model = cobra.test.create_test_model("salmonella")
+        model = cobra.io.load_model("salmonella")
 
         #Get reactions and metabolites
         rx = [f.id for f in model.reactions]
@@ -390,7 +389,7 @@ def test(n):
         from cobra.flux_analysis import flux_variability_analysis
         from cobra.flux_analysis.loopless import add_loopless, loopless_solution
         #Get model and tailor
-        model = cobra.test.create_test_model("salmonella")
+        model = cobra.io.load_model("salmonella")
         model.reactions.get_by_id('ATPM').lower_bound = 0
         model.reactions.get_by_id('ATPM').upper_bound = 1000
         rxns = [r.id for r in model.reactions]
@@ -431,7 +430,7 @@ def test(n):
         from cobra.flux_analysis.loopless import add_loopless, loopless_solution
 
         #Get model
-        model = cobra.test.create_test_model("ecoli")
+        model = cobra.io.load_model("ecoli")
         #Set objective
         model.objective = "Ec_biomass_iJO1366_core_53p95M"
         #Initialize parsing list
