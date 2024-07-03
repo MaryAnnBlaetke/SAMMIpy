@@ -225,19 +225,19 @@ def plot(model,parsert = [],datat = [],secondaries = [],opts = options()):
     jsonstr = jsonstr + opts.jscode
     #Read in template
     folder = __path__[0]
-    index = open(folder + '\\browser\\index.html').read()
+    index = open(folder + '/browser/index.html').read()
     #Write code in appropriate place
     index = index.replace('//MATLAB_CODE_HERE//',jsonstr)
     #Write to file
-    open(folder + '\\browser\\' + opts.htmlName,'w').write(index)
+    open(folder + '/browser/' + opts.htmlName,'w').write(index)
     #Open
     if opts.load:
-        os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "\\browser\\" + opts.htmlName)
+        os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + opts.htmlName)
 
 def openmap(htmlName):
     if not bool(re.search("\.html$",htmlName)):
         htmlName = htmlName + '.html'
-    os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "\\browser\\" + htmlName)
+    os.system("start \"\" \"" + os.path.dirname(os.path.realpath(__file__)) + "/browser/" + htmlName)
     return
 
 def test(n):
